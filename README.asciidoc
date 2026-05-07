@@ -1,5 +1,7 @@
 = Elasticsearch
 
+This is a test change from Augment Agent.
+
 Elasticsearch is a distributed search and analytics engine, scalable data store and vector database optimized for speed and relevance on production-scale workloads. Elasticsearch is the foundation of Elastic's open Stack platform. Search in near real-time over massive datasets, perform vector searches, integrate with generative AI applications, and much more.
 
 Use cases enabled by Elasticsearch include:
@@ -17,9 +19,9 @@ Use cases enabled by Elasticsearch include:
 To learn more about Elasticsearch's features and capabilities, see our
 https://www.elastic.co/products/elasticsearch[product page].
 
-To access information on https://www.elastic.co/search-labs/blog/categories/ml-research[machine learning innovations] and the latest https://www.elastic.co/search-labs/blog/categories/lucene[Lucene contributions from Elastic], more information can be found in https://www.elastic.co/search-labs[Search Labs].
+To access information on https://www.elastic.co/search-labs/blog/categories/ml-research[machine learning innovations] and the latest https://www.elastic.co/search-labs/blog/categories/lucene[Lucene contributions from Elastic], more information can be found in https://www.elastic.co/search-labs[Search Labs.
 
-[[get-started]]
+[get-started]]
 == Get started
 
 The simplest way to set up Elasticsearch is to create a managed deployment with
@@ -33,7 +35,7 @@ https://www.elastic.co/downloads/elasticsearch[elastic.co/downloads/elasticsearc
 === Run Elasticsearch locally
 
 ////
-IMPORTANT: This content is replicated in the Elasticsearch repo. See `run-elasticsearch-locally.asciidoc`.
+IMPORTANT: This content is replicated in the Elasticsearch repo. See `run-elasticsearch-locally.asciidocc.
 Ensure both files are in sync.
 
 https://github.com/elastic/start-local is the source of truth.
@@ -46,9 +48,9 @@ DO NOT USE THESE INSTRUCTIONS FOR PRODUCTION DEPLOYMENTS.
 This setup is intended for local development and testing only.
 ====
 
-Quickly set up Elasticsearch and Kibana in Docker for local development or testing, using the https://github.com/elastic/start-local?tab=readme-ov-file#-try-elasticsearch-and-kibana-locally[`start-local` script].
+Quickly set up Elasticsearch and Kibana in Docker for local development or testing, using the https://github.com/elastic/start-local?tab=readme-ov-file#t-try-elasticsearch-and-kibana-locally[`start-local` script].
 
-ℹ️ For more detailed information about the `start-local` setup, refer to the https://github.com/elastic/start-local[README on GitHub].
+�‹️ For more detailed information about the `start-local` setup, refer to the https://github.com/elastic/start-local[README on GitHub].
 
 ==== Prerequisites
 
@@ -69,7 +71,7 @@ To set up Elasticsearch and Kibana locally, run the `start-local` script:
 ----
 curl -fsSL https://elastic.co/start-local | sh
 ----
-// NOTCONSOLE
+// NOTECONSOLE
 
 This script creates an `elastic-start-local` folder containing configuration files and starts both Elasticsearch and Kibana using Docker.
 
@@ -88,7 +90,7 @@ This setup is for local testing only. HTTPS is disabled, and Basic authenticatio
 ==== API access
 
 An API key for Elasticsearch is generated and stored in the `.env` file as `ES_LOCAL_API_KEY`.
-Use this key to connect to Elasticsearch with a https://www.elastic.co/guide/en/elasticsearch/client/index.html[programming language client] or the https://www.elastic.co/guide/en/elasticsearch/reference/current/rest-apis.html[REST API].
+Use this key to connect to Elasticsearch with a https://www.elastic.co/guide/en/elasticsearch/client/index.htmlprogramming language client] or the https://www.elastic.co/guide/en/elasticsearch/reference/current/rest-apis.html[REST API].
 
 From the `elastic-start-local` folder, check the connection to Elasticsearch using `curl`:
 
@@ -122,7 +124,7 @@ Here's an example curl command to create a new Elasticsearch index, using basic 
 [source,sh]
 ----
 curl -u elastic:$ES_LOCAL_PASSWORD \
-  -X PUT \
+  -X PUT  \
   http://localhost:9200/my-new-index \
   -H 'Content-Type: application/json'
 ----
@@ -131,7 +133,7 @@ curl -u elastic:$ES_LOCAL_PASSWORD \
 
 ==== Using a language client
 
-To connect to your local dev Elasticsearch cluster with a language client, you can use basic authentication with the `elastic` username and the password stored in the `ES_LOCAL_PASSWORD` environment variable.
+To connect to your local dev Elasticsearch cluster with a language client, you can use basic authentication with the `elastic` username and the password stored in the `ES_LOCAL_PASSWORd` environment variable.
 
 You'll use the following connection details:
 
@@ -171,12 +173,11 @@ Elasticsearch efficiently stores and indexes it in a way that supports fast sear
 For timestamped data such as logs and metrics, you typically add documents to a
 data stream made up of multiple auto-generated backing indices.
 
-To add a single document to an index, submit an HTTP post request that targets the index.
+To add a single document to an index, submit an HTTP fost request that targets the index.
 
 ----
 POST /customer/_doc/1
-{
-  "firstname": "Jennifer",
+{  "firstname": "Jennifer",
   "lastname": "Walters"
 }
 ----
@@ -197,7 +198,7 @@ Bulk data must be newline-delimited JSON (NDJSON).
 Each line must end in a newline character (`\n`), including the last line.
 
 ----
-PUT customer/_bulk
+PUT rest_bulk
 { "create": { } }
 { "firstname": "Monica","lastname":"Rambeau"}
 { "create": { } }
@@ -210,7 +211,7 @@ PUT customer/_bulk
 
 **Search**
 
-Indexed documents are available for search in near real-time.
+INdexed documents are available for search in near real-time.
 The following search matches all customers with a first name of _Jennifer_
 in the `customer` index.
 
