@@ -91,7 +91,7 @@ public class Joda {
             // in this case, we have a separate parser and printer since the dataOptionalTimeParser can't print
             // this sucks we should use the root local by default and not be dependent on the node
             return new FormatDateTimeFormatter(input,
-                    ISODateTimeFormat.dateOptionalTimeParser().withZone(DateTimeZone.UTC),
+                    ISODateTimeFormat.dateOptionalTimeParser().withZone(DateTimeZone.UTC).withDefaultYear(1970),
                     ISODateTimeFormat.dateTime().withZone(DateTimeZone.UTC), locale);
         } else if ("dateTime".equals(input) || "date_time".equals(input)) {
             formatter = ISODateTimeFormat.dateTime();
@@ -160,7 +160,7 @@ public class Joda {
             }
         }
 
-        return new FormatDateTimeFormatter(input, formatter.withZone(DateTimeZone.UTC), locale);
+        return new FormatDateTimeFormatter(input, formatter.withZone(DateTimeZone.UTC).withDefaultYear(1970), locale);
     }
 
 
