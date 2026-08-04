@@ -1,6 +1,8 @@
 package org.elasticsearch.common.joda;
 
 import org.elasticsearch.test.ElasticsearchTestCase;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.junit.Test;
 
 import java.util.concurrent.TimeUnit;
@@ -43,5 +45,14 @@ public class DateMathParserTests extends ElasticsearchTestCase {
         assertThat(parser.parse("2013-01-01||+1y", 0), equalTo(parser.parse("2013-01-01", 0) + TimeUnit.DAYS.toMillis(365)));
         assertThat(parser.parse("2013-03-03||/y", 0), equalTo(parser.parse("2013-01-01", 0)));
         assertThat(parser.parseRoundCeil("2013-03-03||/y", 0), equalTo(parser.parse("2014-01-01", 0)));
+    }
+
+    @Test
+    public void partialDatesDefaultToYear1970() {
+        // when the year is not part of the format, it must default to the 1970 epoch base
+        // (rather than joda's default of 2000), consistent with how partial dates are indexed
+        DateMathParser parser = new DateMathParser(Joda.forPattern("MM-dd"), TimeUnit.MILLISECONDS);
+        assertThat(parser.parse("01-01", 0), equalTo(0l));
+        assertThat(parser.parse("06-15", 0), equalTo(new DateTime(1970, 6, 15, 0, 0, DateTimeZone.UTC).getMillis()));
     }
 }
